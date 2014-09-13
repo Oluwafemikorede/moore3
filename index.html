@@ -1,0 +1,269 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN"
+"http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+<head>
+<title>Moore Phonegap App</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link href="css/theme-style.css" media="all" rel="stylesheet" type="text/css" />
+<script type="cordova.js"></script>
+	<script src="js/jquery.min.js"></script>
+
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="js/gmaps.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function()
+ {
+
+new GMaps({
+  div: '#map',
+  lat: 6.5482638,
+  lng: 3.3609394999999997
+});
+
+
+GMaps.geolocate({
+  success: function(position) {
+  	// alert(position.coords.latitude);
+  	$("#mylat").val(position.coords.latitude);
+  	$("#mylng").val(position.coords.longitude);
+  	// window.lat = position.coords.latitude;
+  	// window.lng = position.coords.longitude;
+    // map.setCenter(position.coords.latitude, position.coords.longitude);
+
+  },
+  error: function(error) {
+    alert('Geolocation failed: '+error.message);
+  },
+  not_supported: function() {
+    alert("Your browser does not support geolocation");
+  },
+  always: function() {
+    // alert("Done!");
+    console.log('done')
+  }
+});
+
+});
+
+</script>
+
+
+</head>
+<body>
+<div class="wrap"> 			
+   <div class="header">	
+      <div class="header-top">	
+         <div class="logo" style="height:20px">
+					<!-- <a href="javascript:;">Moore </a> -->
+				</div>
+		<div class="drp-dwn">
+		<a href="show.html">Show Record</a>
+	      <!-- <select>
+			 <option value="#home">Hello</option>
+			 <option value="#overview">Overview</option>
+			 <option value="#share">Share</option>
+			 <option value="#fea">Features</option>
+			 <option value="#gall">Gallery</option>
+			 <option value="#down">Download</option>
+			 <option value="#comp">Compatibility</option>
+		  </select> -->
+		</div>
+		<div class="clear"></div>
+	  </div> 
+      <div class="banner" id="home">
+      	 <h1>Moore Phonegap App</h1>
+		 <div class="slide-text-info-btns">
+			 <a class="apple" href="#"><span> </span></a>
+			 <a class="play-btn" href="#"><span> </span></a>
+	       </div>
+	  </div>
+	  </div>
+		
+		<div id="overview" class="features text-center">
+			<div class="container">
+				
+				
+				<div class="col-md-12">
+						<!-- <div class="box box-bordered box-color"> -->
+							<div class="box-title">
+								<h3><i class="icon-th-list"></i> Submit User Coordinates</h3>
+							</div>
+							<div class="box-content nopadding">
+								<!-- <form action="" method="POST" class='form-horizontal form-bordered'> -->
+							
+
+									<div class="control-group">
+										<!-- <label for="password" class="control-label">Name </label> -->
+										<div class="moore">
+											<input type="text" name="name" id="form_name"  placeholder=" Name" class="moore">
+										</div>
+									</div>
+
+									<div class="control-group">
+										<!-- <label for="password" class="control-label">Age </label> -->
+										<div class="moore">
+											<input type="text" name="age" id="form_age"  placeholder="Age" class="moore">
+										</div>
+									</div>
+
+									<div class="control-group">
+										<!-- <label for="password" class="control-label">State </label> -->
+										<div class="moore"> 
+											<input type="text" name="state" id="form_state"  placeholder="State" class="moore">
+											<input type="hidden" name="lat" id="mylat" value="" >
+											<input type="hidden" name="lng" id="mylng" value="">
+										</div>
+									</div>
+		
+									<div class="control-group">
+										<!-- <label for="password" class="control-label">Map </label> -->
+										
+										<div class="controls">
+										<div id="map" style="height: 205px;"></div>
+										</div>
+									</div>
+
+							
+									<div class="moore">
+										<input type="submit"  id="form_submit" value="Submit" />
+										<input type="reset" class="moore" value="Cancel" />
+									</div>
+								<!-- </form> -->
+							</div>
+						<!-- </div> -->
+					</div>
+				
+			</div>
+		</div>
+		
+	
+		
+		<div class="footer">
+			<div class="container">
+				<!-- <div class="col-md-7 footer-left">
+				</div> -->
+				<div class="col-md-5 footer-right text-left">
+					<p>Show List.</p>
+					<!-- <form>
+						<input type="text" value="Your email" >
+						<input type="submit" value="Submit" />
+					</form> -->
+					<div id="showList"></div>
+				</div>
+				<!-- <div class="clearfix"> </div> -->
+			</div>
+			
+     
+		</div>
+	
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+// function send(){
+    $(document).ready(function(){
+
+
+
+
+    	$('#form_submit').click(function(event){
+                    event.preventDefault();
+
+				var user_name = $("#form_name").val();
+				var user_age = $("#form_age").val();
+				var user_state = $("#form_state").val();
+				var user_lat = $("#mylat").val();
+				var user_lng = $("#mylng").val();
+
+				window.localStorage.setItem("moore_name",user_name);
+				window.localStorage.setItem("moore_age",user_age);
+				window.localStorage.setItem("moore_state",user_state);
+				window.localStorage.setItem("moore_lat",user_lat);
+				window.localStorage.setItem("moore_lng",user_lng);
+
+
+
+
+				// alert(window.localStorage.getItem("moore_state"));
+
+
+				var db = window.openDatabase("Moore_korede_DB", "1.0", "Moore DB", 200000); //will create database Moore_korede_DB or open it
+ 
+			    //function will be called when device ready
+			    // function onDeviceReady(){
+			    db.transaction(createTable, errorCB, successCB);
+			    db.transaction(populateDB, errorCB, successCB);
+			    // }
+			 
+			    //create table and insert some record
+			    function populateDB(tx) {
+tx.executeSql('INSERT INTO user(Name,Age,State,Lat,Lng) VALUES ("'+ user_name +'","'+user_age +'", "'+user_state+'", "'+user_lat+'","'+user_lng+'")');
+			      }
+
+
+			      function createTable(tx){
+tx.executeSql('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Age TEXT NOT NULL,State TEXT NOT NULL,Lat TEXT NOT NULL,Lng TEXT NOT NULL)');
+			      }
+
+				//function will be called when an error occurred
+				function errorCB(err) {
+					// alert("Error processing SQL: "+err.code);
+					console.log("Error processing SQL: "+err.code)
+				}
+
+				//function will be called when process succeed
+				function successCB() {
+					alert("Record Inserted!");
+					// db.transaction(queryDB,errorCB);
+				}
+
+
+				//select all from users
+			    // function queryDB(tx){
+			    //     tx.executeSql('SELECT * FROM users',[],querySuccess,errorCB);
+			    // }
+
+
+
+			    // function querySuccess(tx,result){
+			    //     $('#showList').empty();
+			    //     $.each(result.rows,function(index){
+			    //         var row = result.rows.item(index);
+			    //     $('#showList').append('<li><h3>'+row['Name']+'</h3><p>Age '+row['Age']+'</p><p>State '+row['State']+'</p><p>Lat '+row['Lat']+'</p><p>Lng '+row['Lng']+'</p></li>');
+			    //     });
+			 
+			    //     $('#showList').listview();
+
+		
+				// $.post( "http://localhost/test/", { name: user_name, age: user_age, state: user_state, lat: user_lat, lng: user_lng }, 
+				// 	function(data) {
+				// 		  // console.log(data); 
+				// 		  // alert(data);
+				// 		  if(data.statuss == 'ok'){
+				//  				// alert(data.message);
+				// 		  		navigator.notification.alert('Success: ' + data.message);
+				// 		  	} 	else {
+				//  				// alert(data.message);
+				// 		  		navigator.notification.alert('Error: ' + data.message);
+				// 		  	}
+				// 			// alert(data.message);
+						  
+				// }, "json");
+
+			
+			});
+
+
+	});
+</script>
+

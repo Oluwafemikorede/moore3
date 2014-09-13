@@ -1,0 +1,139 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN"
+"http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+<head>
+<title>Moore Phonegap App</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link href="css/theme-style.css" media="all" rel="stylesheet" type="text/css" />
+<script type="cordova.js"></script>
+	<script src="js/jquery.min.js"></script>
+
+<!-- <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="js/gmaps.js"></script> -->
+
+
+
+
+</head>
+<body>
+<div class="wrap"> 			
+   <div class="header">	
+      <div class="header-top">	
+         <div class="logo" style="height:20px">
+					<!-- <a href="javascript:;">Moore </a> -->
+				</div>
+		<div class="drp-dwn">
+	      <a href="index.html">Home</a>
+		</div>
+		<div class="clear"></div>
+	  </div> 
+      <div class="banner" id="home">
+      	 <h1>Moore Phonegap App</h1>
+		 <div class="slide-text-info-btns">
+			 <a class="apple" href="#"><span> </span></a>
+			 <a class="play-btn" href="#"><span> </span></a>
+	       </div>
+	  </div>
+	  </div>
+		
+		<div id="overview" class="features text-center">
+			<div class="container">
+				
+				
+				<div class="col-md-12">
+						<!-- <div class="box box-bordered box-color"> -->
+							<div class="box-title">
+								<h3><i class="icon-th-list"></i> Show Record</h3>
+							</div>
+							<div class="box-content nopadding">
+								
+									<p>Show List.</p>
+
+										<div id="showList"></div>
+							
+									
+							</div>
+						<!-- </div> -->
+					</div>
+				
+			</div>
+		</div>
+		
+	
+		
+		<div class="footer">
+			<div class="container">
+				<!-- <div class="col-md-7 footer-left">
+				</div> -->
+				<div class="col-md-5 footer-right text-left">
+					<!-- <p>Show List.</p> -->
+					<!-- <form>
+						<input type="text" value="Your email" >
+						<input type="submit" value="Submit" />
+					</form> -->
+				
+				</div>
+				<!-- <div class="clearfix"> </div> -->
+			</div>
+			
+     
+		</div>
+	
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+                  
+
+				var db = window.openDatabase("Moore_korede_DB", "1.0", "Moore DB", 200000); //will create database Moore_korede_DB or open it
+ 
+			    //function will be called when device ready
+			    // function onDeviceReady(){
+			    db.transaction(queryDB, errorCB, successCB);
+			    // }
+			 
+
+
+
+				//function will be called when an error occurred
+				function errorCB(err) {
+					console.log("Error processing SQL: "+err.code);
+				}
+
+				//function will be called when process succeed
+				function successCB() {
+					alert("View Records!");
+					db.transaction(queryDB,errorCB);
+				}
+
+
+				//select all from users
+			    function queryDB(tx){
+			        tx.executeSql('SELECT * FROM users',[],querySuccess,errorCB);
+			    }
+
+
+
+			    function querySuccess(tx,result){
+			        $('#showList').empty();
+			        $.each(result.rows,function(index){
+			            var row = result.rows.item(index);
+			        $('#showList').append('<li><h3>'+row['Name']+'</h3><p>Age '+row['Age']+'</p><p>State '+row['State']+'</p><p>Lat '+row['Lat']+'</p><p>Lng '+row['Lng']+'</p></li>');
+			        });
+			 
+			        // $('#showList').listview();			
+			};
+
+
+
+</script>
+
