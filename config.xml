@@ -20,6 +20,7 @@
         Your Name
         </author>
         
-        <gap:plugin name="com.millerjames01.sqlite-plugin" version="1.0.1" />
+     
+        <gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.0" />
 
     </widget>
